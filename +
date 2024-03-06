@@ -8,23 +8,11 @@ resource "helm_release" "argocd" {
   create_namespace = true
   version          = "3.35.4"
 
-  values = [file("values/argocd.yaml")]
+  values = [file("applications/application.yaml")]
 }
 
-resource "helm_release" "argocd-apps" {
-  name  = "argocd-apps"
 
-  repository       = "https://argoproj.github.io/argo-helm"
-  chart            = "argocd-apps"
-  namespace        = "argocd"
-  version          = "1.6.2"
 
-  values = [
-    file("applications/application.yaml")
-  ]
-
-  depends_on = [helm_release.argocd]
-}
 
 resource "null_resource" "password" {
   depends_on = [helm_release.argocd]

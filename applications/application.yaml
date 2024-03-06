@@ -5,7 +5,7 @@ applications:
     source:
       repoURL: https://github.com/kulajk/wcss-argocd.git 
       targetRevision: HEAD
-      path: application/manifests/cluster
+      path: applications/manifests/cluster
       directory:
         recurse: true
     destination:
